@@ -20,6 +20,13 @@ function showSuccess(input) {
     formControl.className = "form-control success";
 }
 
+//function to check email validity
+function isValidEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+
 
 //The below is the event listener listening on SUBMIT event
 form.addEventListener('submit', function(e) {
@@ -35,6 +42,8 @@ form.addEventListener('submit', function(e) {
 
     if (email.value === '') {
         showError(email, 'Email cannot be null');
+    } else if (isValidEmail(email.value) === false){
+        showError(email, 'Email is invalid');
     } else {
         showSuccess(email);
     }
