@@ -26,39 +26,61 @@ function isValidEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
+// Function to check if the required fields got data
 
+function checkRequired(inputArray) {
+
+    inputArray.forEach(function(input){
+        if (input.value === '') {
+            showError(input, `${getInputId(input)} cannot be null` );
+        } else {
+            showSuccess(input);
+        }
+    });
+}
+
+// Function to get input id and initcap it and return
+
+function getInputId(input) {
+
+    return input.id.toUpperCase().charAt(0) + input.id.slice(1);
+}
 
 //The below is the event listener listening on SUBMIT event
 form.addEventListener('submit', function(e) {
     e.preventDefault();
-    if (username.value === '') {
-        showError(username, 'User cannot be null');
-    } else if (username.value.length < 3 ) {
-        showError(username, 'Username cannot be less than 3 characters');
-    } else {
-        showSuccess(username);
-    }
+
+    checkRequired([username, email, password, password2]);
 
 
-    if (email.value === '') {
-        showError(email, 'Email cannot be null');
-    } else if (isValidEmail(email.value) === false){
-        showError(email, 'Email is invalid');
-    } else {
-        showSuccess(email);
-    }
+    // if (username.value === '') {
+    //     showError(username, 'User cannot be null');
+    // } else if (username.value.length < 3 ) {
+    //     showError(username, 'Username cannot be less than 3 characters');
+    // } else {
+    //     showSuccess(username);
+    // }
 
-    if (password.value === '') {
-        showError(password, 'Password cannot be null');
-    } else {
-        showSuccess(password);
-    }
 
-    if (password2.value === '') {
-        showError(password2, 'Confirm Password cannot be null');
-    } else {
-        showSuccess(password2);
-    }
+    // if (email.value === '') {
+    //     showError(email, 'Email cannot be null');
+    // } else if (isValidEmail(email.value) === false){
+    //     showError(email, 'Email is invalid');
+    // } else {
+    //     showSuccess(email);
+    // }
+
+    // if (password.value === '') {
+    //     showError(password, 'Password cannot be null');
+    // } else {
+    //     showSuccess(password);
+    // }
+
+    // if (password2.value === '') {
+    //     showError(password2, 'Confirm Password cannot be null');
+    // } else {
+    //     showSuccess(password2);
+    // }
 
 
 
